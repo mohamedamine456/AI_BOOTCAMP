@@ -6,7 +6,7 @@ def text_analyzer(*args):
     else:
         if len(args) == 0:
             print("What is the text to analyse?")
-            str_cal = input(">> ")
+            str_cal = raw_input(">> ")
         elif len(args) == 1:
             str_cal = args[0]
         i = 0

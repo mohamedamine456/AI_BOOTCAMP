@@ -20,7 +20,7 @@ else:
         result = var1 * var2
         print("Product:     " + str(result))
         try:
-            result = var1 / var2
+            result = float(var1) / float(var2)
             print("Quotient:    " + str(result))
             result = var1 % var2
             print("Remainder:   " + str(result))

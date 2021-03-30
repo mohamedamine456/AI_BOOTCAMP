@@ -1,9 +1,9 @@
-python -m pip list | awk '{print $1}'
+pip list | awk '{print $1}'
 
-python -m pip list
+pip list
 
-python -m pip show numpy
+pip show numpy
 
-python -m pip search tesseract
+pip search tesseract
 
 pip freeze > requirements.txt
