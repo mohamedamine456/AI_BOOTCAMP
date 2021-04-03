@@ -72,7 +72,7 @@ class Vector:
                 new_vector.append(nbr * float(number))
             return (repr(Vector(new_vector)))
 
-    def __true_div__(self, number):
+    def __truediv__(self, number):
         if isinstance(number, (float, int)) == False:
             print("The Division applied with a float or int only")
             exit()
@@ -86,7 +86,7 @@ class Vector:
                 print("Trying to divide the vector by zero not that smart")
                 exit()
 
-    def __rtrue_div__(self, number):
+    def __rtruediv__(self, number):
         if isinstance(number, (float, int)) == False:
             print("The Division applied with a float or int only")
             exit()

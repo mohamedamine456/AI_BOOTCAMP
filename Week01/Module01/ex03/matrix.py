@@ -120,6 +120,58 @@ class Matrix:
                 new_matrix.append(sublist)
             return (repr((Matrix(new_matrix))))
     
+    #---------------------------------------------------------------------------------------------#
+
+    def __truediv__(self, nbr):
+        if isinstance(nbr, (float, int)) == False:
+            print("You can only divide by a number")
+        else:
+            if nbr == 0:
+                print("Not that smart You can't devide by zero")
+                return (None)
+            else:
+                new_matrix = []
+                for sublist in self.data:
+                    new_sub = []
+                    for item in sublist:
+                        new_sub.append(item / nbr)
+                    new_matrix.append(new_sub)
+                return (repr(Matrix(new_matrix)))
+
+    def __rtruediv__(self, nbr):
+        if isinstance(nbr, (float, int)) == False:
+            print("The Matrix can only be devide by a number")
+            exit()
+        else:
+            try:
+                new_matrix = []
+                for sublist in self.data:
+                    new_sub = []
+                    for item in sublist:
+                        new_sub.append(nbr / item)
+                    new_matrix.append(new_sub)
+                return (repr(Matrix(new_matrix)))
+            except ZeroDivisionError:
+                print ("The Matrix Contains a zero a can't finish this operation")
+                exit()
+
+    #---------------------------------------------------------------------------------------------#
+    def __str__(self):
+        word = "(<Matrix>: ["
+        i = 0
+        while i < self.shape[0]:
+            word += "["
+            j = 0
+            while j < self.shape[1]:
+                word += str(self.data[i][j])
+                j += 1
+                if j < self.shape[1]:
+                    word += ", "
+            word += "]"
+            i += 1
+        word += "]"
+        return (word)
+
     def __repr__(self):
         word = "(<Matrix>: {})".format(self.data)
         return (word)

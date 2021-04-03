@@ -13,7 +13,7 @@ v3 = 44.1 + v1
 print(v3)
 v3 = 2.03 - v2
 print(v3)
-v3 = 9.1 + v2
+v3 = v2 / 2
 print(v3)
 print(str(v3))
 print(repr(v3))
