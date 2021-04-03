@@ -1,17 +1,16 @@
-import decimal
-
 class Vector:
     def __init__(self, numbers):
+        self.values = []
+        self.size = 0
         if isinstance(numbers, list) == False:
             if isinstance(numbers, int) == False:
                 print("Vector takes list of numbers or number")
+                return
             else:
-                self.values = []
                 for i in range(0, numbers):
                     self.values.append(float(i))
                 self.size = len(self.values)
         else:
-            self.values = []
             for number in numbers:
                 self.values.append(float(number))
             self.size = len(self.values)
@@ -102,13 +101,14 @@ class Vector:
                 exit()
 
     def __str__(self):
-        word = ""
+        word = "(<Vector>: ["
         i = 0
         while i < self.size:
             word += str(self.values[i])
             i += 1
             if i < self.size:
                 word += ", "
+        word += "])"
         return (word)
 
     def __repr__(self):
