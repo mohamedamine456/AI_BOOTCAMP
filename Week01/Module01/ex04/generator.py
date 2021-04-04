@@ -11,12 +11,16 @@ def generator(text, sep=" ", option=None):
         list_words = text.split(sep)
         new_list = []
         if option == "shuffle":
+            random_numbers = []
             i = 0
             while i < len(list_words):
-                rand = random.randint(0, len(list_words) - i)
-                new_list.append(list_words[rand])
-                list_words.remove(list_words[rand])
-                i += 1
+                n = random.randint(0, len(list_words) - 1)
+                if n not in random_numbers:
+                    random_numbers.append(n)
+                    i += 1
+
+            for j in random_numbers:
+                new_list.append(list_words[j])
         elif option == "ordered":
             list_words.sort()
             new_list = list_words
