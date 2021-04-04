@@ -21,13 +21,13 @@ class Bank(object):
         self.account = []
 
     def add(self, account):
-        if check_account(account) == False:
+        if self.check_account(account) == False:
             return (False)
         else:
             self.account.append(account)
 
     def transfer(self, origin, dest, amount):
-       if amount < 0:
+        if amount < 0:
             print("Very Smart, You want to transfer a negative amount")
             return (False)
         if check_for_transfer(origin, dest, amount) == False:
@@ -37,27 +37,42 @@ class Bank(object):
         return (True)
 
     def fix_account(self, account):
-
-
-
-    def check_account(self, acount):
-        if not account.id or not account.name or not account.value:
-            print("This Bank Acouunt is Corrupted")
-            return (False)
-        elif isinstance(account, Account) == False or len(account.__dict__) % 2 != 0:
-            print("This Bank Account is Corrupted")
+        ind = self.look_for_account(account)
+        if ind == False:
+            print("The Account You are looking for doesn't even exist")
             return (False)
         else:
-            name = account.name
-            if name.startswith("b") or name.startswith("zip") or name.startswith("addr"):
-                print("This Bank Account is Corrupted")
+            if isinstance(account, int):
+                self.account[ind].id = account
+            elif isinstance(account, str):
+                self.account[ind].name = account
+            attrs = searched_account.__dict__.keys()
+            if "value" not in attrs:
+                self.account[ind].__dict__["value"] = "value"
+            self.account[ind].__dict__["addressses"] = ''
+            self.account[ind].__dict__["zipzip"] = ''
+
+
+    def check_account(self, account):
+        if isinstance(account, Account) == False:
+            print("This Bank Account is Corrupted {account}")
+            return (False)
+        else:
+            attrs = account.__dict__.keys()
+            if "name" not in attrs or "id" not in attrs or "value" not in attrs or len(attrs) % 2 == 1:
+                print("This Acount is corrupted! {name, id, value, 2}")
                 return (False)
             else:
-                for attr in account.__dict__:
-                    if attr.startswith("b") or attr.startswith("zip") or attr.starts_with("addr"):
-                        print("This Bank Account is Corrupted")
+                (szip, saddr) = (0, 0)
+                for item in attrs:
+                    if item.startswith("b") == True:
+                        print("This Account is Corrupted {b}!")
                         return (False)
-                return (True)
+                    (szip, saddr) = (1 if item.startswith("zip") else szip, 1 if item.startswith("addr") else saddr)
+                if (szip, saddr) != (1, 1):
+                    print("This Account is Corrupted! {zip, addr}")
+                    return (False)
+
 
     def check_for_transfer(self, origin, dest, amount):
         if check_account(origin) == False or check_account(dest) == False:
@@ -67,5 +82,19 @@ class Bank(object):
             return (False)
         else:
             return (True)
+
+    def look_for_account(self, search):
+        if isinstance(search, int):
+            for item in self.account:
+                if item.id == search:
+                    return (self.account.index(item))
+            return (False)
+        elif isinstance(search, str):
+            for item in self.account:
+                if item.name == search:
+                    return (self.account.index(item))
+            return (False)
+        else:
+            return (False)
 
 #-----------------------------------------------------------------------------------------#
