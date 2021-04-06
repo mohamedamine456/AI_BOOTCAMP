@@ -1,4 +1,5 @@
 def ft_filter(function_to_apply, list_of_inputs):
+    list_of_inputs = iter(list_of_inputs)
     new_list = []
     for item in list_of_inputs:
         if function_to_apply(item) == True:
