@@ -6,14 +6,15 @@ def what_are_the_vars(*argv, **kwargs):
 
     argv_set = set()
     for arg in argv:
-        setattr(obj, "var_" + str(index), arg)
+        obj.__setattr__("var_" + str(index), arg)
+        #setattr(obj, "var_" + str(index), arg)
         argv_set.add("var_" + str(index))
         index += 1
     
     for key, value in kwargs.items():
         if key in argv_set:
             return (None)
-        setattr(obj, key, value)
+        obj.__setattr__(key, value)
     return (obj)
 
 
@@ -27,7 +28,7 @@ def doom_printer(obj):
         print("END")
         return
     for attr in dir(obj):
-        if attr[0] != '-':
+        if attr[0] != '_':
             value = getattr(obj, attr)
             print("{}: {}".format(attr, value))
     print("END")
