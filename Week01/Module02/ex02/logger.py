@@ -7,7 +7,7 @@ class CoffeeMachine():
 
     #@log
     def start_machine(self):
-        if self.water_level < 20:
+        if self.water_level > 20:
             return (True)
         else:
             print("Please add Water!")
