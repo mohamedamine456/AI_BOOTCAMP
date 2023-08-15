@@ -27,14 +27,10 @@ if len(sys.argv) > 1:
         j = 0
         while j < llw:
             char = ord(all_words[i][j])
-            if char in range(48, 58):
-                morse_code += str(morse_number[char - 48][0])
-            else:
-                morse_code += str(morse_char[char - 65][0])
+            morse_code += [str(morse_number[char - 48][0]) if char in range(48, 58) else str(morse_char[char - 65][0])][0]
             j += 1
-            if j < llw:
-                morse_code += " "
+            morse_code += [" " if j < llw else ""][0]
+                
         i += 1
-        if i < ll:
-            morse_code += " / "
+        morse_code += [" / " if i < ll else ""][0]
     print(morse_code)

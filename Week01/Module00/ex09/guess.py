@@ -11,7 +11,7 @@ print("Good luck!")
 while True:
     tries += 1
     print("What's Your guess between 1 and 99?")
-    guess = raw_input(">> ")
+    guess = input(">> ")
     if guess == "exit":
         print("Goodbye!")
         exit()
@@ -29,7 +29,4 @@ while True:
                 print("You won in " + str(tries) + " attempts!")
             exit()
         else:
-            if guess > secret:
-                print("To high!")
-            else:
-                print("To low!")
+            print("To high!") if guess > secret else print("To low!")

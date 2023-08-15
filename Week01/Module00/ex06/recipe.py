@@ -39,7 +39,7 @@ def switcher(choice):
         choice = 0
     if choice == 1:
         print("Please Enter The Recipe's name to Add")
-        name = raw_input(">> ")
+        name = input(">> ")
         if name  == "sandwich":
             add_recipe(name, sandwich["ingredients"], sandwich["meal"], sandwich["prep_time"])
         elif name == "cake":
@@ -50,11 +50,11 @@ def switcher(choice):
             print ('Please enter a recipe within this list : ["sandwich", "cake", "salad"]')
     elif choice == 2:
         print("Please Enter The Recipe's name to Delete")
-        name = raw_input(">> ")
+        name = input(">> ")
         delete_recipe(name)
     elif choice == 3:
         print("Please Enter The Recipe's name To get its Details")
-        name = raw_input(">> ")
+        name = input(">> ")
         if name in ["sandwich", "cake", "salad"]:
             print_recipe(name)
         else:
@@ -67,7 +67,7 @@ def switcher(choice):
     else:
         print("This option does not exist, please type the corresponding number.")
         print("To exit, enter 5")
-        choice = raw_input(">> ")
+        choice = input(">> ")
         switcher(choice)
 
 choice = 0
@@ -79,6 +79,6 @@ while True :
     print("3: Print a recipe")
     print("4: Print the Cookbook")
     print("5: Quit")
-    choice  = raw_input(">> ")
+    choice  = input(">> ")
     switcher(choice)
 

@@ -6,13 +6,13 @@ class Book:
         if not name or isinstance(name, str) == False:
             print("Please Enter a string Name for the Book!")
             exit()
-        elif not last_update or isinstance(last_update, datetime) == False:
+        elif not last_update or isinstance(last_update, datetime.datetime) == False:
             print("Please Enter a datetime for last_update")
             exit()
-        elif not creation_date or isinstance(creattion_date, datetime) == False:
+        elif not creation_date or isinstance(creation_date, datetime.datetime) == False:
             print("Please Enter a datetime for creation_date")
             exit()
-        elif not recipes_list or isinstance(recipes_list, list):
+        elif not recipes_list or isinstance(recipes_list, list) == False:
             print("Please Enter a list of recipes for recipes_list")
             exit()
         else:
@@ -26,8 +26,7 @@ class Book:
         if name and isinstance (name, str) == True:
             for recipe in self.recipes_list:
                 if recipe.name == name:
-                    Recipe.str(recipe)
-                    return (recipe)
+                    return str(recipe)
             print("The recipe name You are looking for doesn't exist in this list!")
         else:
             print("Please enter proper stringi name to search for!")
@@ -38,7 +37,7 @@ class Book:
         if recipe_type and isinstance(recipe_type, str) == True and recipe_type in ["starter", "lunch", "dessert"]:
             for recipe in self.recipes_list:
                 if recipe.recipe_type == recipe_type:
-                    Recipe.str(recipe)
+                    return str(recipe)
         else:
             print("Please enter a proper string recipe_type in ['starter', 'lunch', 'dessert']")
     

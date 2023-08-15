@@ -1,28 +1,32 @@
 cookbook = {
-        "sandwich": {
-            "ingredients": ["ham", "bread", "cheese", "tomatoes"],
-            "meal": "lunch",
-            "prep_time": 10
-            },
-
-        "cake": {
-            "ingredients": ["flour", "sugar", "eggs"],
-            "meal": "dessert",
-            "prep_time": 60
-            },
-
-        "salad": {
-            "ingredients": ["avocado", "arugula", "tomatoes", "spinach"],
-            "meal": "lunch",
-            "prep_time": 15
-            }
-        }
+    "Sandwich": {
+        "ingredients": ["ham", "bread", "cheese", "tomatoes"],
+        "meal": "lunch",
+        "prep_time": 10,
+    },
+    "Cake": {
+        "ingredients": ["flour", "sugar", "eggs"],
+        "meal": "dessert",
+        "prep_time": 60,
+    },
+    "Salad": {
+        "ingredients": ["avocado", "arugula", "tomatoes", "spinach"],
+        "meal": "lunch",
+        "prep_time": 15,
+    },
+}
 
 recipe_values = ["ingredients", "meal", "prep_time"]
 
 
 def start():
-    choices = ["Add a recipe", "Delete a recipe", "Print a recipe", "Print the cookbook", "Quit"]
+    choices = [
+        "Add a recipe",
+        "Delete a recipe",
+        "Print a recipe",
+        "Print the cookbook",
+        "Quit",
+    ]
     while True:
         for i, choice in enumerate(choices):
             print("{}: {}".format(i + 1, choice))
@@ -80,7 +84,10 @@ def delete_recipe(name: str):
 
 
 def add_recipe(recipe_name: str, ingredients: list, meal_type: str, prep_time: str):
-    cookbook.setdefault(recipe_name, {"ingredients": ingredients, "meal": meal_type, "prep_time": prep_time})
+    cookbook.setdefault(
+        recipe_name,
+        {"ingredients": ingredients, "meal": meal_type, "prep_time": prep_time},
+    )
 
 
 def print_all_recipe_names():
@@ -92,5 +99,5 @@ def print_all_recipe_names():
             i += 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start()

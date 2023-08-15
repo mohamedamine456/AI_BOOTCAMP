@@ -5,4 +5,4 @@ languages = {
 }
 
 for language, author in languages.items():
-    print("%(language)s was created by %(author)s" % {"language":language, "author":author})
+    print(f"{language} was created by {author}")
