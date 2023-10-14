@@ -1,9 +1,13 @@
 import sys
 
-result = ""
-for i, arg in enumerate(reversed(sys.argv[1:])):
-    if i > 0:
-        result += " "
-    result += "".join(char.lower() if char.isupper() else char.upper() if char.islower() else char for char in reversed(arg))
 
-print(result)
+def reverse_and_swap_case(string):
+    return string[::-1].swapcase()
+
+
+if len(sys.argv) == 1:
+    print("Usage: python exec.py [string1] [string2] ...")
+else:
+    string = " ".join(sys.argv[1:])
+    result = reverse_and_swap_case(string)
+    print(result)

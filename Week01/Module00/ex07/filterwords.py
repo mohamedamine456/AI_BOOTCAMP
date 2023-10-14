@@ -1,11 +1,10 @@
 import sys
-if len(sys.argv) != 3 or sys.argv[1].isdigit() == True or sys.argv[2].isdigit() == False:
+import string
+
+if len(sys.argv) != 3 or not sys.argv[2].isdigit():
     print("ERROR")
 else:
-    tab_words = sys.argv[1].split()
-    filter_tab = [word for word in tab_words if len(word) > int(sys.argv[2])]
-    for i in range(len(filter_tab)):
-        for char in filter_tab[i]:
-            if char in "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~":
-                filter_tab[i] = filter_tab[i].replace(char, '')
+    words = sys.argv[1]
+    n = int(sys.argv[2])
+    filter_tab = [word.translate(str.maketrans('', '', string.punctuation)) for word in words.split() if len(word) > n]
     print(filter_tab)

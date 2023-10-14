@@ -1,8 +1,21 @@
 import sys
 
-if len(sys.argv) > 2:
-    print("AssertionError: more than one argument are provided")
-elif sys.argv[1].isdigit() == False:
-    print("AssertionError: argument is not an integer")
+
+def check_number(num):
+    try:
+        num = int(num)
+    except ValueError:
+        print("AssertionError: argument must be an integer")
+        return
+    if num == 0:
+        print("I'm Zero")
+    elif num % 2 == 0:
+        print("I'm Even")
+    else:
+        print("I'm Odd")
+
+
+if len(sys.argv) == 1:
+    print("Usage: python program.py [integer]")
 else:
-    print("I'm Zero") if int(sys.argv[1]) == 0 else print("I'm Even") if int(sys.argv[1]) % 2 == 0 else print("I'm Odd")
+    check_number(sys.argv[1])

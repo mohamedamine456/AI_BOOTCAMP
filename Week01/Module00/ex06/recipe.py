@@ -1,84 +1,104 @@
-cookbook = {}
-sandwich = {"ingredients":["ham", "break", "cheese", "tomates"], "meal": "lunch", "prep_time": 10}
-cake = {"ingredients": ["floour", "sugar", "eggs"], "meal": "desser", "prep_time": 60}
-salad = {"ingredients": ["avocado", "arugula", "tomates", "spinach"], "meal": "lunch", "prep_time": 15}
+cookbook = {
+    "sandwich": {
+        "ingredients": ["ham", "bread", "cheese", "tomatoes"],
+        "meal": "lunch",
+        "prep_time": 10,
+    },
+    "cake": {
+        "ingredients": ["flour", "sugar", "eggs"],
+        "meal": "dessert",
+        "prep_time": 60,
+    },
+    "salad": {
+        "ingredients": ["avocado", "arugula", "tomatoes", "spinach"],
+        "meal": "lunch",
+        "prep_time": 15,
+    },
+}
 
-def print_recipe(name):
-    try:
+recipe_values = ["ingredients", "meal", "prep_time"]
+
+
+def start():
+    choices = [
+        "Add a recipe",
+        "Delete a recipe",
+        "Print a recipe",
+        "Print the cookbook",
+        "Quit",
+    ]
+    while True:
+        try:
+            print("Please select an option by typing the corresponding number:")
+            for i, choice in enumerate(choices):
+                print("{}: {}".format(i + 1, choice))
+            choice = int(input(">> "))
+
+            if choice == 1:
+                user_add_recipe()
+                continue
+
+            if choice == 2:
+                recipe_name = input("Enter the name of the recipe you want to delete: ")
+                delete_recipe(recipe_name)
+                continue
+
+            if choice == 3:
+                recipe_name = input("Please enter the recipe's name to get its details: ")
+                print_recipe(recipe_name)
+                continue
+
+            if choice == 4:
+                print_all_recipe_names()
+                continue
+
+            if choice == 5:
+                print("Cookbook closed.")
+                break
+            else:
+                print("This option does not exist, please type the corresponding number.\nTo exit, enter 5.")
+        except ValueError:
+            print("This option does not exist, please type the corresponding number.\nTo exit, enter 5.")
+
+
+def user_add_recipe():
+    user_inputs = list()
+    recipe_name = input("Enter the recipe name: ")
+    for v in recipe_values:
+        user_input = input("Enter the {}: ".format(v))
+        if v == recipe_values[0]:
+            user_input = user_input.split(" ")
+        user_inputs.append(user_input)
+    add_recipe(recipe_name, user_inputs[0], user_inputs[1], user_inputs[2])
+    user_inputs.clear()
+
+
+def print_recipe(name: str):
+    if cookbook.get(name):
         recipe = cookbook[name]
-        print("")
-        print("Recipe for {}:".format(name))
-        print("Ingredients list: {}".format(recipe["ingredients"]))
-        print("To be eaten for {}.".format(recipe["meal"]))
-        print("Takes {} minutes of cooking.".format(recipe["prep_time"]))
-        print("")
-    except KeyError:
-        print("The recipe you entered is not in the list! You can add it if you want.")
-
-def delete_recipe(name):
-    del(cookbook[name])
-
-def add_recipe(name, ingredients, meal, prep_time):
-    recipe = {"ingredients": ingredients, "meal": meal, "prep_time": prep_time}
-    cookbook[name] = recipe
-        
-def print_cookbook():
-    print("")
-    if len(cookbook) != 0 :
-        print("The Cookbook contains:")
-        for key, recipe in cookbook.items():
-            print_recipe(key)
+        print(f"Recipe for {name}:")
+        print(f"Ingredients list: {recipe['ingredients']}")
+        print(f"To be eaten for {recipe['meal']}.")
+        print(f"Takes {recipe['prep_time']} minutes of cooking.")
+        print()
     else:
-        print("CookBook is Empty")
-    print("")
+        print("No such recipe name")
 
-def switcher(choice):
-    try:
-        choice = int(choice)
-    except ValueError:
-        choice = 0
-    if choice == 1:
-        print("Please Enter The Recipe's name to Add")
-        name = input(">> ")
-        if name  == "sandwich":
-            add_recipe(name, sandwich["ingredients"], sandwich["meal"], sandwich["prep_time"])
-        elif name == "cake":
-            add_recipe(name, cake["ingredients"], cake["meal"], cake["prep_time"])
-        elif name == "salad":
-            add_recipe(name, salad["ingredients"], salad["meal"], salad["prep_time"])
-        else:
-            print ('Please enter a recipe within this list : ["sandwich", "cake", "salad"]')
-    elif choice == 2:
-        print("Please Enter The Recipe's name to Delete")
-        name = input(">> ")
-        delete_recipe(name)
-    elif choice == 3:
-        print("Please Enter The Recipe's name To get its Details")
-        name = input(">> ")
-        if name in ["sandwich", "cake", "salad"]:
-            print_recipe(name)
-        else:
-            print("There is no recipe by this name {}".format(name))
-    elif choice == 4:
-        print_cookbook()
-    elif choice == 5:
-        print("Glad to have you in our app!")
-        exit()
+def delete_recipe(name: str):
+    if cookbook.get(name):
+        cookbook.pop(name)
     else:
-        print("This option does not exist, please type the corresponding number.")
-        print("To exit, enter 5")
-        choice = input(">> ")
-        switcher(choice)
+        print("No such recipe name")
 
-choice = 0
 
-while True :
-    print("Please select an option by typing the corresponding number:")
-    print("1: Add a Recipe")
-    print("2: Delete a Recipe")
-    print("3: Print a recipe")
-    print("4: Print the Cookbook")
-    print("5: Quit")
-    choice  = input(">> ")
-    switcher(choice)
+def add_recipe(recipe_name: str, ingredients: list, meal_type: str, prep_time: str):
+    recipe = dict(ingredients=ingredients, meal=meal_type, prep_time=prep_time)
+    cookbook[recipe_name] = recipe
 
+
+def print_all_recipe_names():
+    for recipe_name in cookbook.keys():
+        print_recipe(recipe_name)
+
+if __name__ == "__main__":
+    start()

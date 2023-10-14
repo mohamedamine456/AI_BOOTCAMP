@@ -3,7 +3,7 @@ class Vector:
         self.values = []
         self.size = 0
         if isinstance(numbers, list) == False:
-            if isinstance(numbers, int) == False:
+            if isinstance(numbers, float) == False:
                 print("Vector takes list of numbers or number")
                 return
             else:
@@ -12,7 +12,7 @@ class Vector:
                 self.size = len(self.values)
         else:
             for number in numbers:
-                self.values.append(float(number))
+                self.values.append(number)
             self.size = len(self.values)
 
     def __add__(self, vectorb):

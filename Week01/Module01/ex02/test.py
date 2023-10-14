@@ -17,3 +17,7 @@ v3 = v2 / 2
 print(v3)
 print(str(v3))
 print(repr(v3))
+
+v7 = Vector([[0.0], [1.0], [2.0], [3.0]])
+v7 = v7 * 5
+print(v7)
