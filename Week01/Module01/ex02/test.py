@@ -1,6 +1,6 @@
 from vector import Vector
 
-v1 = Vector([4, 77, 88, 9, 32,32,2])
+v1 = Vector([4, 77, 88, 9, 32, 32, 2])
 v2 = Vector(7)
 print(v2)
 v3 = v1 - v2

@@ -1,11 +1,13 @@
+ERROR_VECTOR = "the argument Should be a Vector with same dimension"
+
+
 class Vector:
     def __init__(self, numbers):
         self.values = []
         self.size = 0
-        if isinstance(numbers, list) == False:
-            if isinstance(numbers, float) == False:
+        if not isinstance(numbers, list):
+            if not isinstance(numbers, float):
                 print("Vector takes list of numbers or number")
-                return
             else:
                 for i in range(0, numbers):
                     self.values.append(float(i))
@@ -16,16 +18,16 @@ class Vector:
             self.size = len(self.values)
 
     def __add__(self, vectorb):
-        if isinstance(vectorb, Vector) == False or vectorb.size != self.size:
-            print("the argument Should be a Vector with same dimension")
+        if not isinstance(vectorb, Vector) or vectorb.size != self.size:
+            print(ERROR_VECTOR)
         else:
             new_vector = []
             for i in range(self.size):
                 new_vector.append(self.values[i] + vectorb.values[i])
             return (repr(Vector(new_vector)))
-    
+
     def __radd__(self, number):
-        if isinstance(number, (float, int)) == False:
+        if not isinstance(number, (float, int)):
             print("Error: You can't add something to vector but float or int")
             exit()
         else:
@@ -35,8 +37,8 @@ class Vector:
             return (repr(Vector(new_vector)))
 
     def __sub__(self, vectorb):
-        if isinstance(vectorb, Vector) == False or vectorb.size != self.size:
-            print("the argument Should be a Vector with same dimension")
+        if not isinstance(vectorb, Vector) or vectorb.size != self.size:
+            print(ERROR_VECTOR)
         else:
             new_vector = []
             for i in range(self.size):
@@ -44,7 +46,7 @@ class Vector:
             return (repr(Vector(new_vector)))
 
     def __rsub__(self, number):
-        if isinstance(number, (float, int)) == False:
+        if not isinstance(number, (float, int)):
             print("Error: You can't substract something from vector but float or int")
             exit()
         else:
@@ -54,8 +56,8 @@ class Vector:
             return (repr(Vector(new_vector)))
 
     def __mul__(self, vectorb):
-        if isinstance(vectorb, Vector) == False or vectorb.size != self.size:
-            print("the argument Should be a Vector with same dimension")
+        if not isinstance(vectorb, Vector) or vectorb.size != self.size:
+            print(ERROR_VECTOR)
         else:
             new_vector = []
             for i in range(self.size):
@@ -63,7 +65,7 @@ class Vector:
             return (repr(Vector(new_vector)))
 
     def __rmul__(self, number):
-        if isinstance(number, (float, int)) == False:
+        if not isinstance(number, (float, int)):
             print("Error: You can't multiply something to vector but float or int")
             exit()
         else:
@@ -73,7 +75,7 @@ class Vector:
             return (repr(Vector(new_vector)))
 
     def __truediv__(self, number):
-        if isinstance(number, (float, int)) == False:
+        if not isinstance(number, (float, int)):
             print("The Division applied with a float or int only")
             exit()
         else:
@@ -87,7 +89,7 @@ class Vector:
                 exit()
 
     def __rtruediv__(self, number):
-        if isinstance(number, (float, int)) == False:
+        if not isinstance(number, (float, int)):
             print("The Division applied with a float or int only")
             exit()
         else:

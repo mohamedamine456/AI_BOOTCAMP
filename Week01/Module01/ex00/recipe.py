@@ -1,21 +1,21 @@
 class Recipe:
     def __init__(self, name, cooking_lvl, cooking_time, ingredients, description, recipe_type):
-        if not name or isinstance(name, str) == False:
+        if not name or not isinstance(name, str):
             print("You didn't enter a string Name!")
             exit()
-        elif isinstance(cooking_lvl, int) == False or cooking_lvl not in range(1, 6):
+        elif not isinstance(cooking_lvl, int) or cooking_lvl not in range(1, 6):
             print("Enter a Cooking level number  in range 1 to 5!")
             exit()
-        elif isinstance(cooking_time, int) == False or cooking_time < 0:
+        elif not isinstance(cooking_time, int) or cooking_time < 0:
             print("You Should enter a positive number for Cooking time!")
             exit()
-        elif isinstance(ingredients, list) == False or not ingredients:
+        elif not isinstance(ingredients, list) or not ingredients:
             print("You didn't enter a list of  ingredients for recipe!")
             exit()
-        elif isinstance(description, str) == False:
+        elif not isinstance(description, str):
             print("description can be empty but can't be something else than a string")
             exit()
-        elif isinstance(recipe_type, str) == False or recipe_type not in ["starter", "lunch", "dessert"]:
+        elif not isinstance(recipe_type, str) or recipe_type not in ["starter", "lunch", "dessert"]:
             print("Recipe Type should be a string in {'starter', 'lunch', 'dessert'}")
             exit()
         else:
@@ -25,14 +25,12 @@ class Recipe:
             self.ingredients = ingredients
             self.description = description
             self.recipe_type = recipe_type
+
     def __str__(self):
         """Return the string to print with the recipe info"""
-        rinfo = ""
-        rinfo += "Recipe for {}:\n".format(self.name)
-        rinfo += "level of Cooking: {}\n".format(self.cooking_lvl)
-        rinfo += "Takes {} minutes of cooking.\n".format(self.cooking_time)
-        rinfo += "Ingredients list: {}\n".format(self.ingredients)
-        if self.description:
-            rinfo += "The description of this recipe: {}\n".format(self.description)
-        rinfo += "To be eaten for {}.\n".format(self.recipe_type)
-        return (rinfo)
+        return f"Recipe for {self.name}:\n" \
+               f"level of Cooking: {self.cooking_lvl}\n" \
+               f"Takes {self.cooking_time} minutes of cooking.\n" \
+               f"Ingredients list: {self.ingredients}\n" \
+               f"The description of this recipe: {self.description}\n" \
+               f"To be eaten for {self.recipe_type}."

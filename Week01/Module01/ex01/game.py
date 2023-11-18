@@ -17,14 +17,16 @@ class Stark(GotCharacter):
     def die(self):
         self.is_alive = False
 
+
 class Lannister(GotCharacter):
     """A classs representin Teh Lannister Family"""
     def __init__(self, first_name=None, is_alive=True):
         super().__init__(first_name=first_name, is_alive=is_alive)
         self.family_name = "Lannister"
         self.house_words = "A Lannister always pays his debts."
-    
+
     def print_house_words(self):
         print(self.house_words)
+
     def die(self):
         self.is_alive = False
